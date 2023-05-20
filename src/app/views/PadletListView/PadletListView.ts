@@ -45,7 +45,7 @@ export class PadletListView implements OnInit {
           'url')
         ],
         new User(1,
-          'Ersteller',
+          'Lisa',
           'Müller',
           new Date(2017, 3, 1),
           new Date(2017, 3, 1),
@@ -85,13 +85,13 @@ export class PadletListView implements OnInit {
         'url')
       ],
       new User(1,
-        'Ersteller',
+        'Max',
         'Müller',
         new Date(2017, 3, 1),
         new Date(2017, 3, 1),
         'Ersteller.müller@gmail.com',
         'url'),
-      true,
+      false,
     )];
   }
 }

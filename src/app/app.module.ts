@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 
 import { PadletListView } from './views/PadletListView/PadletListView';
 import {PadletDetailView} from "./views/PadletDetailView/PadletDetailView";
+import { PadletListItemComponent } from './components/padlet-list-item/padlet-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PadletListView,
-    PadletDetailView
+    PadletDetailView,
+    PadletListItemComponent
   ],
   imports: [
     BrowserModule,

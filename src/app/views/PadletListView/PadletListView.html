@@ -1,6 +1,9 @@
-<h1>ListView</h1>
-<div class=>
-  <a *ngFor="let padlet of padlets">
-      <div>{{ padlet.title }}</div>
-  </a>
+<div style="margin: 50px" class="ui container">
+  <h1>Padlets</h1>
+  <div class="ui middle aligned selection divided list">
+    <a *ngFor="let padlet of padlets" class="item pl-padlet-list-item [padlet]"></a>
+  </div>
 </div>
+
+<!--22:55 component-->
+
