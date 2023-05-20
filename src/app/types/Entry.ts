@@ -7,8 +7,8 @@ export class Entry {
     public updated_at : Date,
     public title : string,
     public text : string,
-    public padlet_id : string,
-    public creator_id : string,
+    public padlet_id : number,
+    public creator_id : number,
     public creator : User,
   ) {}
 }

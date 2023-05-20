@@ -11,6 +11,6 @@ export class Padlet {
     public entries : Entry[],
     public users: User[],
     public creator: User,
-    public is_public : boolean
+    public is_public : boolean,
   ) {}
 }
