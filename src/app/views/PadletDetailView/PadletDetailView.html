@@ -1,29 +1,21 @@
-<!--<p>work!</p>-->
-<!--&lt;!&ndash;<div style="margin: 50px" class="ui container" *ngIf="padlet">&ndash;&gt;-->
-<!--  <h1 *ngFor="let entry of entries">{{ entry.title }}</h1>-->
-<!--  <div class="ui middle aligned selection divided list">-->
-<!--   &lt;!&ndash; <span *ngFor="let entry of entries?.users" class="item">-->
-<!--             <div class="description"> {{ user?.firstname }} {{ user?.lastname }} </div>-->
-<!--    </span>&ndash;&gt;-->
-
-<!--  </div>-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
 <div style="margin: 50px" class="ui container">
   <h1>{{ padlet?.title }}</h1>
-  <div class="header">By {{ padlet?.creator?.firstname }} {{ padlet?.creator?.lastname }}<br>{{ padlet?.created_at }}</div><br>
+  <div class="header">By {{ padlet?.creator?.firstname }} {{ padlet?.creator?.lastname }}<br>{{ padlet?.created_at | date: 'dd.MM.yyyy' }}</div><br>
   <div *ngIf="padlet && padlet.is_public">
     <span class="ui label" *ngIf="padlet.is_public == true; else privat">public</span><br>
     <ng-template #privat><span class="ui label">privat</span></ng-template><br>
   </div>
+  <span><button class="ui small button"><i class="delete icon"></i>Delete Padlet</button></span>
+  <span><button class="ui small button"><i class="edit icon"></i>Edit</button></span>
+  <span><button class="ui small button"><i class="plus icon"></i>Add Padlet</button></span>
   <hr>
   <h2>Entries</h2>
+  <span><button class="ui small button"><i class="plus icon"></i>Add Entry</button></span><br><br>
   <div class="ui card" *ngFor="let entry of padlet?.entries">
     <div class="content">
       <span class="header">{{ entry?.title }}<br></span>
-      <span class="meta">{{ entry?.creator?.firstname }} {{ entry?.created_at }}<br></span><br>
+      <span class="meta">{{ entry?.creator?.firstname }} {{ entry?.created_at | date: 'dd.MM.yyyy'}}<br></span><br>
       <span class="description">{{ entry?.text }} </span>
-      <!--        {{ entry?.creator?.firstname }} </span>-->
     </div>
     <div class="extra content">
       <span class="left floated">
@@ -34,11 +26,8 @@
       </span>
     </div>
   </div>
-
-  <!-- <h1 *ngFor="let entry of entries">{{ entry.title }}</h1>-->
-
   <br>
-  <button (click)="showPadletList()" class="ui button">Back to all padlets</button>
+  <button class="ui button" [routerLink]="['/padlets']">Back to all padlets</button>
 </div>
 
 

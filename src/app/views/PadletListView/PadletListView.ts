@@ -13,21 +13,24 @@ import {PadletStoreService} from "../../shared/padlet-store.service";
 })
 
 export class PadletListView implements OnInit {
-  constructor (private ps:PadletStoreService) {
+  constructor (private pl:PadletStoreService) {
 
   }
 
   padlets: Padlet[] = [] ;
 
-  @Output() showDetailsEvent = new EventEmitter<Padlet>();
+  //@Output() showDetailsEvent = new EventEmitter<Padlet>();
 
 
   ngOnInit() {
-    this.ps.getAll().subscribe(res => {
+    this.pl.getAll().subscribe(res => {
       this.padlets=res;
-      console.log(this.padlets);
     });
   }
+
+  //showDetails(padlet: Padlet) {
+    //this.showDetailsEvent.emit(padlet);
+  //}
 
     /*this.padlets = [
       new Padlet(1,
@@ -111,7 +114,4 @@ export class PadletListView implements OnInit {
     )];
   }*/
 
-  showDetails(padlet: Padlet) {
-    this.showDetailsEvent.emit(padlet);
-  }
 }
