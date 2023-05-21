@@ -4,7 +4,7 @@ import { PadletListView } from "./views/PadletListView/PadletListView";
 import {PadletDetailView} from "./views/PadletDetailView/PadletDetailView";
 
 const routes: Routes = [
-  { path: '', component: PadletListView },
+  { path: 'padlet', component: PadletListView },
   { path: 'padlet/:id', component: PadletDetailView }
 ];
 

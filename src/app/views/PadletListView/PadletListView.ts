@@ -1,7 +1,10 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 import {Padlet} from "../../types/Padlet";
 import {Entry} from "../../types/Entry";
 import {User} from "../../types/User";
+import { HttpClient } from '@angular/common/http';
+import {Observable} from "rxjs";
+import {PadletStoreService} from "../../shared/padlet-store.service";
 
 @Component({
   selector : 'pl-padlet-list-view',
@@ -10,10 +13,23 @@ import {User} from "../../types/User";
 })
 
 export class PadletListView implements OnInit {
+  constructor (private ps:PadletStoreService) {
+
+  }
+
   padlets: Padlet[] = [] ;
 
+  @Output() showDetailsEvent = new EventEmitter<Padlet>();
+
+
   ngOnInit() {
-    this.padlets = [
+    this.ps.getAll().subscribe(res => {
+      this.padlets=res;
+      console.log(this.padlets);
+    });
+  }
+
+    /*this.padlets = [
       new Padlet(1,
         'First Padlet',
         2,
@@ -93,5 +109,9 @@ export class PadletListView implements OnInit {
         'url'),
       false,
     )];
+  }*/
+
+  showDetails(padlet: Padlet) {
+    this.showDetailsEvent.emit(padlet);
   }
 }

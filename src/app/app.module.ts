@@ -8,6 +8,9 @@ import { PadletListView } from './views/PadletListView/PadletListView';
 import {PadletDetailView} from "./views/PadletDetailView/PadletDetailView";
 import { PadletListItemComponent } from './components/padlet-list-item/padlet-list-item.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,8 +20,8 @@ import { PadletListItemComponent } from './components/padlet-list-item/padlet-li
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

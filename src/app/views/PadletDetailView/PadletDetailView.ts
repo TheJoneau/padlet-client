@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Padlet} from "../../types/Padlet";
 import {Entry} from "../../types/Entry";
 import {User} from "../../types/User";
@@ -9,6 +9,14 @@ import {User} from "../../types/User";
   styles : []
 })
 export class PadletDetailView implements OnInit {
+
+  @Input() padlet : Padlet | undefined
+  @Output() showListEvent = new EventEmitter<any>();
+
+  showPadletList() {
+    this.showListEvent.emit();
+  }
+
   entries: Entry[] = [] ;
 
   ngOnInit() {

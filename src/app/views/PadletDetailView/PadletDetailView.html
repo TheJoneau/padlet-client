@@ -1,10 +1,22 @@
+<!--<p>work!</p>-->
+<!--&lt;!&ndash;<div style="margin: 50px" class="ui container" *ngIf="padlet">&ndash;&gt;-->
+<!--  <h1 *ngFor="let entry of entries">{{ entry.title }}</h1>-->
+<!--  <div class="ui middle aligned selection divided list">-->
+<!--   &lt;!&ndash; <span *ngFor="let entry of entries?.users" class="item">-->
+<!--             <div class="description"> {{ user?.firstname }} {{ user?.lastname }} </div>-->
+<!--    </span>&ndash;&gt;-->
+
+<!--  </div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<h1>funkt</h1>
 <div style="margin: 50px" class="ui container">
   <h1 *ngFor="let entry of entries">{{ entry.title }}</h1>
   <div class="ui middle aligned selection divided list">
-   <!-- <span *ngFor="let entry of entries?.users" class="item">
-             <div class="description"> {{ user?.firstname }} {{ user?.lastname }} </div>
-    </span>-->
 
   </div>
+
+  <button (click)="showPadletList()" class="ui button">Back to all padlets</button>
 </div>
+
 
