@@ -20,7 +20,7 @@ export class PadletDetailView implements OnInit {
   entries: Entry[] = [] ;
 
   ngOnInit() {
-    this.entries = [
+   /* this.entries = [
       new Entry(
         1,
         new Date(2017, 3, 1),
@@ -52,7 +52,6 @@ export class PadletDetailView implements OnInit {
           new Date(2017, 3, 1),
           'Ersteller.müller@gmail.com',
           'url')
-      )];
-
+      )];*/
   }
 }

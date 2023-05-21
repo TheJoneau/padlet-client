@@ -9,13 +9,35 @@
 <!--  </div>-->
 <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-<h1>funkt</h1>
 <div style="margin: 50px" class="ui container">
-  <h1 *ngFor="let entry of entries">{{ entry.title }}</h1>
-  <div class="ui middle aligned selection divided list">
-
+  <h1>{{ padlet?.title }}</h1>
+  <div class="header">By {{ padlet?.creator?.firstname }} {{ padlet?.creator?.lastname }}<br>{{ padlet?.created_at }}</div><br>
+  <div *ngIf="padlet && padlet.is_public">
+    <span class="ui label" *ngIf="padlet.is_public == true; else privat">public</span><br>
+    <ng-template #privat><span class="ui label">privat</span></ng-template><br>
+  </div>
+  <hr>
+  <h2>Entries</h2>
+  <div class="ui card" *ngFor="let entry of padlet?.entries">
+    <div class="content">
+      <span class="header">{{ entry?.title }}<br></span>
+      <span class="meta">{{ entry?.creator?.firstname }} {{ entry?.created_at }}<br></span><br>
+      <span class="description">{{ entry?.text }} </span>
+      <!--        {{ entry?.creator?.firstname }} </span>-->
+    </div>
+    <div class="extra content">
+      <span class="left floated">
+          <div class="ui mini button"><i class="edit icon"></i>Edit</div>
+      </span>
+      <span class="right floated">
+          <div class="ui mini button"><i class="delete icon"></i>Delete</div>
+      </span>
+    </div>
   </div>
 
+  <!-- <h1 *ngFor="let entry of entries">{{ entry.title }}</h1>-->
+
+  <br>
   <button (click)="showPadletList()" class="ui button">Back to all padlets</button>
 </div>
 
