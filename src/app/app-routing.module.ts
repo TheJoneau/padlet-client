@@ -9,8 +9,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'padlets', pathMatch: 'full' },
   { path: 'padlets', component: PadletListView },
   { path: 'padlets/:id', component: PadletDetailView },
-  { path: 'padlets/:id/padlet', component: CreatePadletView },
-  { path: 'padlets/:id/entry', component: CreateEntryView }
+  { path: 'padlet/create', component: CreatePadletView },
+  { path: 'padlets/:id/entry/create', component: CreateEntryView }
 ];
 
 @NgModule({

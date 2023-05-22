@@ -26,23 +26,23 @@ export class PadletStoreService {
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
- /*  create (padlet: Padlet): Observable<any> {
-     return this.http.post(`${this.api}/palets`, padlet)
-       .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  create (padlet: any): Observable<any> {
+    return this.http.post(`${this.api}/padlets`, padlet)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
 
-   }*/
+  }
 
-   /*update (book: Book): Observable<any> {
-     return this.http.put(`${this.api}/books/${book.isbn}`, book)
-       .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  /*update (book: Book): Observable<any> {
+    return this.http.put(`${this.api}/books/${book.isbn}`, book)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
 
-   }*/
+  }*/
 
-/*   remove (isbn: string): Observable<any> {
-     return this.http.delete(`${this.api}/books/${isbn}`)
-       .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  /*   remove (isbn: string): Observable<any> {
+       return this.http.delete(`${this.api}/books/${isbn}`)
+         .pipe(retry(3)).pipe(catchError(this.errorHandler));
 
-   }*/
+     }*/
 
   private errorHandler (error: Error | any) : Observable<any> {
     return throwError(error);

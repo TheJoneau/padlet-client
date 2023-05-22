@@ -15,6 +15,7 @@ import {CreateEntryView} from "./views/CreateEntryView/CreateEntryView";
 import {EntryStoreService} from "./shared/entry-store-service";
 import {RoleStoreService} from "./shared/role-store-service";
 import {UserStoreService} from "./shared/user-store-service";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {UserStoreService} from "./shared/user-store-service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     PadletStoreService,

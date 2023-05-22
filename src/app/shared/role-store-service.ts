@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {Padlet} from "../types/Padlet";
+import {Role} from "../types/Role";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class RoleStoreService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() : Observable<Array<Padlet>> {
-    return this.http.get<Array<Padlet>>(`${this.api}/roles`)
+  getAll() : Observable<Array<Role>> {
+    return this.http.get<Array<Role>>(`${this.api}/roles`)
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
