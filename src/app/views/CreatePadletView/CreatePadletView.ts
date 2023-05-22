@@ -52,7 +52,9 @@ export class CreatePadletView implements OnInit {
 
   submitForm() {
     console.log('submitted');
+    //user id will manhaben > authetication stor Service > getCurrentUSerID
     //this.padletForm.value.title;
+    //da dazu zusätzlihc zu title und is_public > user creator id mitschickn
     this.pl.create({title: this.padletForm.value.title}).subscribe(res => {
       console.log(res);
     });

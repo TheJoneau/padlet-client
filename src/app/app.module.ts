@@ -8,7 +8,7 @@ import { PadletListView } from './views/PadletListView/PadletListView';
 import {PadletDetailView} from "./views/PadletDetailView/PadletDetailView";
 import { PadletListItemComponent } from './components/padlet-list-item/padlet-list-item.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PadletStoreService} from "./shared/padlet-store.service";
 import {CreatePadletView} from "./views/CreatePadletView/CreatePadletView";
 import {CreateEntryView} from "./views/CreateEntryView/CreateEntryView";
@@ -16,6 +16,9 @@ import {EntryStoreService} from "./shared/entry-store-service";
 import {RoleStoreService} from "./shared/role-store-service";
 import {UserStoreService} from "./shared/user-store-service";
 import {ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
+import {PadletPublicListView} from "./views/PadletPublicListView/PadletPublicListView";
+import {TokenInterceptorService} from "./shared/token-interceptor-service";
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     PadletDetailView,
     PadletListItemComponent,
     CreatePadletView,
-    CreateEntryView
+    CreateEntryView,
+    LoginComponent,
+    PadletPublicListView
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,12 @@ import {ReactiveFormsModule} from "@angular/forms";
     PadletStoreService,
     EntryStoreService,
     RoleStoreService,
-    UserStoreService
+    UserStoreService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

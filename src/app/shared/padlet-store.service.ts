@@ -21,6 +21,11 @@ export class PadletStoreService {
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  getPublic() : Observable<Array<Padlet>> {
+    return this.http.get<Array<Padlet>>(`${this.api}/padlets/public`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
   getOne(id: number) : Observable<Padlet> {
     return this.http.get<Padlet>(`${this.api}/padlets/${id}`)
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
