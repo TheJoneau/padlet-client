@@ -1,28 +1,28 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Padlet} from "../../types/Padlet";
-import {Entry} from "../../types/Entry";
-import {User} from "../../types/User";
-import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs";
 import {PadletStoreService} from "../../shared/padlet-store.service";
 
 @Component({
-  selector : 'pl-padlet-list-view',
+  selector : 'pl-padlet-detail-view',
   templateUrl : './CreatePadletView.html',
   styles : []
 })
-
 export class CreatePadletView implements OnInit {
-  constructor (private pl:PadletStoreService) {
+  padlet : Padlet | undefined;
 
+  constructor(private route: ActivatedRoute, private pl:PadletStoreService){
   }
-
-  padlets: Padlet[] = [] ;
 
   ngOnInit() {
-    this.pl.getAll().subscribe(res => {
-      this.padlets=res;
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const id : number = Number(params.get('id'));
+
+      this.pl.getOne(id).subscribe(res => {
+        this.padlet=res;
+        console.log(res);
+      });
+
     });
   }
-
 }

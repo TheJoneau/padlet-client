@@ -13,6 +13,8 @@ import {PadletStoreService} from "./shared/padlet-store.service";
 import {CreatePadletView} from "./views/CreatePadletView/CreatePadletView";
 import {CreateEntryView} from "./views/CreateEntryView/CreateEntryView";
 import {EntryStoreService} from "./shared/entry-store-service";
+import {RoleStoreService} from "./shared/role-store-service";
+import {UserStoreService} from "./shared/user-store-service";
 
 
 @NgModule({
@@ -29,7 +31,12 @@ import {EntryStoreService} from "./shared/entry-store-service";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [PadletStoreService, EntryStoreService],
+  providers: [
+    PadletStoreService,
+    EntryStoreService,
+    RoleStoreService,
+    UserStoreService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import {Padlet} from "../types/Padlet";
 import {Entry} from "../types/Entry";
 
 @Injectable({
@@ -16,6 +15,15 @@ export class EntryStoreService {
 
   constructor(private http: HttpClient) { }
 
+  create (entry: Entry): Observable<any> {
+    return this.http.post(`${this.api}/entries`, entry)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  remove (id: number): Observable<any> {
+    return this.http.delete(`${this.api}/entries/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
 
   private errorHandler (error: Error | any) : Observable<any> {
     return throwError(error);
