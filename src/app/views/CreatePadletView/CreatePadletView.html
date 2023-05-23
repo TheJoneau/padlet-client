@@ -6,9 +6,20 @@
       <label>Titel</label>
       <input formControlName="title">
       <div *ngIf="errors['title']" class="ui negative message"> {{ errors['title'] }} </div>
-    </div>
+    </div><br>
 
-    <button type="submit" class="ui button" [disabled]="padletForm.invalid">Speichern</button>
+    <label>
+      <input type="radio" value="public" formControlName="is_public">
+      <span> public</span><br><br>
+    </label>
+    <label>
+      <input type="radio" value="private" formControlName="is_public">
+      <span> private</span>
+    </label>
+
+
+
+    <br><br><button type="submit" class="ui button" [disabled]="padletForm.invalid">Speichern</button>
     <br><br><button class="ui button" [routerLink]="['/padlets/']">Back to all padlet</button>
   </form>
 </div>

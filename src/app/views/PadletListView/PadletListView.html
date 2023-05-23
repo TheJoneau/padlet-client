@@ -1,6 +1,10 @@
 <div style="margin: 50px" class="ui container">
-  <span><button class="ui small button" [routerLink]="['/login']">Login</button></span>
+  <div *ngIf="isLoggedIn()">
+    <button type="button" class="ui button" (click)="logout()" [routerLink]="['/']">Logout</button><br><br>
+  </div>
+
   <h1>Padlets</h1>
+  <span><button class="ui small button" [routerLink]="['/padlet/create']"><i class="plus icon"></i>Add Padlet</button></span>
   <div class="ui middle aligned selection divided list">
     <a *ngFor="let padlet of padlets" class="item pl-padlet-list-item"  [padlet]="padlet" [routerLink]="['/padlets', padlet.id]"></a>
   </div>

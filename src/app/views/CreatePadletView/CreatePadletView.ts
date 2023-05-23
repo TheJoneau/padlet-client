@@ -4,6 +4,7 @@ import {Padlet} from "../../types/Padlet";
 import {PadletStoreService} from "../../shared/padlet-store.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BookFormErrorMessages, ErrorMessage} from "./padlet-form-error-messages";
+import {AuthenticationStoreService} from "../../shared/authentication-store-service";
 
 @Component({
   selector : 'pl-padlet-detail-view',
@@ -21,6 +22,7 @@ export class CreatePadletView implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private pl: PadletStoreService,
+    private authService: AuthenticationStoreService,
     private router: Router) {
     this.padletForm = this.fb.group({});
   }
@@ -30,6 +32,8 @@ export class CreatePadletView implements OnInit {
     this.padletForm = this.fb.group({
       id: this.padlet?.id,
       title: [this.padlet?.title, Validators.required],
+      is_public: ['', Validators.required],
+      creator_id: this.padlet?.creator_id,
     });
 
     //checkt ständig ob Fehler auftritt
@@ -52,10 +56,18 @@ export class CreatePadletView implements OnInit {
 
   submitForm() {
     console.log('submitted');
-    //user id will manhaben > authetication stor Service > getCurrentUSerID
-    //this.padletForm.value.title;
-    //da dazu zusätzlihc zu title und is_public > user creator id mitschickn
-    this.pl.create({title: this.padletForm.value.title}).subscribe(res => {
+
+    const creator_id = this.authService.getCurrentUserId();
+
+    console.log(creator_id);
+
+    console.log(this.padletForm.value.title);
+    console.log(this.padletForm.value.is_public);
+
+    this.pl.create({
+      title: this.padletForm.value.title,
+      is_public: this.padletForm.value.is_public,
+      creator_id: creator_id}).subscribe(res => {
       console.log(res);
     });
 

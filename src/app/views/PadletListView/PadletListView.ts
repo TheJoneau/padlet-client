@@ -5,6 +5,7 @@ import {User} from "../../types/User";
 import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs";
 import {PadletStoreService} from "../../shared/padlet-store.service";
+import {AuthenticationStoreService} from "../../shared/authentication-store-service";
 
 @Component({
   selector : 'pl-padlet-list-view',
@@ -13,7 +14,9 @@ import {PadletStoreService} from "../../shared/padlet-store.service";
 })
 
 export class PadletListView implements OnInit {
-  constructor (private pl:PadletStoreService) {
+  constructor (
+    private pl:PadletStoreService,
+    private authService: AuthenticationStoreService) {
 
   }
 
@@ -26,6 +29,14 @@ export class PadletListView implements OnInit {
     this.pl.getAll().subscribe(res => {
       this.padlets=res;
     });
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   //showDetails(padlet: Padlet) {
