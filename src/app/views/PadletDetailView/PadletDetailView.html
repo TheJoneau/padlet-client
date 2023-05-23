@@ -5,7 +5,12 @@
     <span class="ui label" *ngIf="padlet.is_public == true; else privat">public</span><br>
     <ng-template #privat><span class="ui label">privat</span></ng-template><br>
   </div>
-  <span><button class="ui small button"><i class="delete icon"></i>Delete Padlet</button></span>
+
+  <div>
+    <button class="ui small button" *ngIf="authService.isLoggedIn()" (click)="removePadlet()"><i class="delete icon"></i>Delete Padlet</button>
+  </div>
+
+<!--  <span><button class="ui small button"><i class="delete icon"></i>Delete Padlet</button></span>-->
 <!--  <span><button class="ui small button" [routerLink]="['/padlet/create', padlet?.id]"><i class="edit icon"></i>Edit</button></span>-->
   <hr>
   <h2>Entries</h2>

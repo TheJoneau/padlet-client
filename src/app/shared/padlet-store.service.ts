@@ -43,11 +43,11 @@ export class PadletStoreService {
 
   }*/
 
-  /*   remove (isbn: string): Observable<any> {
-       return this.http.delete(`${this.api}/books/${isbn}`)
-         .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  remove (id: number): Observable<any> {
+    return this.http.delete(`${this.api}/padlets/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
 
-     }*/
+  }
 
   private errorHandler (error: Error | any) : Observable<any> {
     return throwError(error);
