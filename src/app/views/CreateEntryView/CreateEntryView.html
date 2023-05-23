@@ -1,1 +1,20 @@
-<div>Create Entry</div>
+<div style="margin: 50px" class="ui container">
+  <h1>Create new Entry</h1>
+  <form  class="ui large form" [formGroup]="entryForm" (ngSubmit)="submitForm()">
+
+    <div class="field">
+      <label>Titel</label>
+      <input formControlName="title">
+      <div *ngIf="errors['title']" class="ui negative message"> {{ errors['title'] }} </div>
+    </div><br>
+
+    <div class="field">
+      <label>Text</label>
+      <input formControlName="text">
+      <div *ngIf="errors['text']" class="ui negative message"> {{ errors['title'] }} </div>
+    </div><br>
+
+    <br><br><button type="submit" class="ui button" [disabled]="entryForm.invalid">Speichern</button>
+    <br><br><button class="ui button" [routerLink]="['/padlets/', padletId]">Back to padlet</button>
+  </form>
+</div>

@@ -9,7 +9,8 @@
 <!--  <span><button class="ui small button" [routerLink]="['/padlet/create', padlet?.id]"><i class="edit icon"></i>Edit</button></span>-->
   <hr>
   <h2>Entries</h2>
-  <span><button class="ui small button"><i class="plus icon"></i>Add Entry</button></span><br><br>
+<!--  <span><button class="ui small button" [routerLink]="['/padlets/:id/entry/create']"><i class="plus icon"></i>Add Entry</button></span><br><br>-->
+  <span><button class="ui small button" [routerLink]="['/padlets' ,padlet?.id, 'entry', 'create']"><i class="plus icon"></i>Add Entry</button></span><br><br>
   <div class="ui card" *ngFor="let entry of padlet?.entries">
     <div class="content">
       <span class="header">{{ entry?.title }}<br></span>

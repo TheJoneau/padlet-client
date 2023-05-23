@@ -2,17 +2,24 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Padlet} from "../../types/Padlet";
 import {PadletStoreService} from "../../shared/padlet-store.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BookFormErrorMessages, ErrorMessage} from "./padlet-form-error-messages";
 import {AuthenticationStoreService} from "../../shared/authentication-store-service";
+import {Role} from "../../types/Role";
+import {User} from "../../types/User";
+import {UserStoreService} from "../../shared/user-store-service";
+import {RoleStoreService} from "../../shared/role-store-service";
 
 @Component({
-  selector : 'pl-padlet-detail-view',
+  selector : 'pl-create-padlet-view',
   templateUrl : './CreatePadletView.html',
   styles : []
 })
 export class CreatePadletView implements OnInit {
   padlet: Padlet | undefined;
+  roles: Role[] | undefined;
+  users: User[] | undefined;
+  usersWithRoles: FormArray
 
   padletForm: FormGroup;
   errors: { [key: string]: string } = {};
@@ -23,35 +30,44 @@ export class CreatePadletView implements OnInit {
     private route: ActivatedRoute,
     private pl: PadletStoreService,
     private authService: AuthenticationStoreService,
+    private userService: UserStoreService,
+    private roleService: RoleStoreService,
     private router: Router) {
     this.padletForm = this.fb.group({});
+    this.usersWithRoles = this.fb.array([]);
   }
 
   ngOnInit() {
+    this.getRoles();
+    this.getUsers();
+
     //properties von padlet werden an formular-felder gebunden, Validierung
     this.padletForm = this.fb.group({
-      id: this.padlet?.id,
-      title: [this.padlet?.title, Validators.required],
-      is_public: ['', Validators.required],
+      title: [null, Validators.required],
+      is_public: [false, Validators.required],
       creator_id: this.padlet?.creator_id,
+      usersWithRoles: this.usersWithRoles
     });
 
     //checkt ständig ob Fehler auftritt
     this.padletForm.statusChanges.subscribe(() =>
       this.updateErrorMessages());
-    /* this.route.paramMap.subscribe((params: ParamMap) => {
-       const id : number = Number(params.get('id'));
+  }
 
-       if (id) {
-         this.isUpdatingPadlet = true;
-         this.pl.getOne(id).subscribe(
-           padlet => {
-             this.padlet = padlet;
-             this.initPadlet();
-           });
-       }
-     });*/
-    //this.initPadlet();
+  addUserWithRole() {
+    this.usersWithRoles.push(this.fb.group({userId: null, roleId: null }))
+  }
+
+  getRoles() {
+    this.roleService.getAll().subscribe(res => {
+      this.roles = res;
+    })
+  }
+
+  getUsers() {
+    this.userService.getAll().subscribe(res => {
+      this.users = res;
+    })
   }
 
   submitForm() {
@@ -59,16 +75,17 @@ export class CreatePadletView implements OnInit {
 
     const creator_id = this.authService.getCurrentUserId();
 
-    console.log(creator_id);
-
-    console.log(this.padletForm.value.title);
-    console.log(this.padletForm.value.is_public);
-
     this.pl.create({
       title: this.padletForm.value.title,
       is_public: this.padletForm.value.is_public,
-      creator_id: creator_id}).subscribe(res => {
+      creator_id,
+      users: this.padletForm.value.usersWithRoles.map((user: any) => ({
+        id: user.userId,
+        role: user.roleId
+      }))
+    }).subscribe(res => {
       console.log(res);
+      this.router.navigate(['/padlets', res.id])
     });
 
 

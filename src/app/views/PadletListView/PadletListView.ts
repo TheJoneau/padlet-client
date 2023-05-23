@@ -27,6 +27,7 @@ export class PadletListView implements OnInit {
 
   ngOnInit() {
     this.pl.getAll().subscribe(res => {
+      console.log(res)
       this.padlets=res;
     });
   }

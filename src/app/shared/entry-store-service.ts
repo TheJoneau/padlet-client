@@ -15,7 +15,7 @@ export class EntryStoreService {
 
   constructor(private http: HttpClient) { }
 
-  create (entry: Entry): Observable<any> {
+  create (entry: any): Observable<any> {
     return this.http.post(`${this.api}/entries`, entry)
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
