@@ -43,10 +43,11 @@ export class PadletDetailView implements OnInit {
     }
   }
 
-  removeEntry() {
-    if (confirm('Do you really want to delete this entry?') && this.entry) {
-      this.es.remove(this.entry?.id).subscribe((res:any) => this.router.navigate(['../'],
-        { relativeTo: this.route }));
+  removeEntry(entry: Entry) {
+    if (confirm("Entry wirklich endgültig löschen?")) {
+      this.es.remove(entry?.id).subscribe((res: any) => {
+        window.location.reload();
+      });
     }
   }
 
