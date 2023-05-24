@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {Padlet} from "../types/Padlet";
-import {Entry} from "../types/Entry";
 
 @Injectable({
   providedIn: 'root'

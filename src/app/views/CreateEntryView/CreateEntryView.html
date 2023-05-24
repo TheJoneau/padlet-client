@@ -14,7 +14,7 @@
       <div *ngIf="errors['text']" class="ui negative message"> {{ errors['title'] }} </div>
     </div><br>
 
-    <br><br><button type="submit" class="ui button" [disabled]="entryForm.invalid">Speichern</button>
+    <br><br><button type="submit" class="ui button" [disabled]="entryForm.invalid">Save</button>
     <br><br><button class="ui button" [routerLink]="['/padlets/', padletId]">Back to padlet</button>
   </form>
 </div>

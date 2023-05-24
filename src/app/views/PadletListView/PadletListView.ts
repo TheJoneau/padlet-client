@@ -1,9 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Padlet} from "../../types/Padlet";
-import {Entry} from "../../types/Entry";
-import {User} from "../../types/User";
-import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs";
 import {PadletStoreService} from "../../shared/padlet-store.service";
 import {AuthenticationStoreService} from "../../shared/authentication-store-service";
 
@@ -22,9 +18,6 @@ export class PadletListView implements OnInit {
 
   padlets: Padlet[] = [] ;
 
-  //@Output() showDetailsEvent = new EventEmitter<Padlet>();
-
-
   ngOnInit() {
     this.pl.getAll().subscribe(res => {
       console.log(res)
@@ -40,9 +33,18 @@ export class PadletListView implements OnInit {
     this.authService.logout();
   }
 
-  //showDetails(padlet: Padlet) {
-    //this.showDetailsEvent.emit(padlet);
-  //}
+}
+
+
+
+
+
+
+
+
+
+
+
 
     /*this.padlets = [
       new Padlet(1,
@@ -126,4 +128,4 @@ export class PadletListView implements OnInit {
     )];
   }*/
 
-}
+

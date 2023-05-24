@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Padlet} from "../../types/Padlet";
 import {PadletStoreService} from "../../shared/padlet-store.service";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {BookFormErrorMessages, ErrorMessage} from "./padlet-form-error-messages";
+import {BookFormErrorMessages} from "./padlet-form-error-messages";
 import {AuthenticationStoreService} from "../../shared/authentication-store-service";
 import {Role} from "../../types/Role";
 import {User} from "../../types/User";
@@ -41,7 +41,6 @@ export class CreatePadletView implements OnInit {
     this.getRoles();
     this.getUsers();
 
-    //properties von padlet werden an formular-felder gebunden, Validierung
     this.padletForm = this.fb.group({
       title: [null, Validators.required],
       is_public: [false, Validators.required],
@@ -49,7 +48,6 @@ export class CreatePadletView implements OnInit {
       usersWithRoles: this.usersWithRoles
     });
 
-    //checkt ständig ob Fehler auftritt
     this.padletForm.statusChanges.subscribe(() =>
       this.updateErrorMessages());
   }
