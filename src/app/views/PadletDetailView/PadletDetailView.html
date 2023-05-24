@@ -9,10 +9,7 @@
   <div>
     <button class="ui small button" (click)="removePadlet()"><i class="delete icon"></i>Delete Padlet</button>
   </div>
-
-<!--  <span><button class="ui small button"><i class="delete icon"></i>Delete Padlet</button></span>-->
-<!--  <span><button class="ui small button" [routerLink]="['/padlet/create', padlet?.id]"><i class="edit icon"></i>Edit</button></span>-->
-
+  <!--  <span><button class="ui small button" [routerLink]="['/padlet/create', padlet?.id]"><i class="edit icon"></i>Edit</button></span>-->
   <hr>
   <h2>Entries</h2>
   <span><button class="ui small button" [routerLink]="['/padlets' ,padlet?.id, 'entry', 'create']"><i class="plus icon"></i>Add Entry</button></span><br><br>
@@ -22,12 +19,8 @@
       <span class="header">{{ entry?.title }}<br></span>
       <span class="meta">{{ entry?.creator?.firstname }} {{ entry?.created_at | date: 'dd.MM.yyyy'}}<br></span><br>
       <span class="description">{{ entry?.text }} </span><br>
-
-
-      <span class="description">By {{ entry?.creator?.firstname }} {{ entry?.creator?.lastname }}</span><br>
-
-
-      </div>
+      <!--      <span class="description">By {{ entry }} {{ entry?.creator?.lastname }}</span><br>-->
+    </div>
 
     <div class="extra content">
       <span class="left floated">

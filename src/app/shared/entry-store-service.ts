@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {Entry} from "../types/Entry";
+import {Padlet} from "../types/Padlet";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,17 @@ export class EntryStoreService {
     return this.http.delete(`${this.api}/entries/${id}`)
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
+
+  getOne(id: number) : Observable<Entry> {
+    return this.http.get<Entry>(`${this.api}/entries/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  /*update (entry: Entry): Observable<any> {
+  return this.http.put(`${this.api}/entries/${id}`, padlet)
+    .pipe(retry(3)).pipe(catchError(this.errorHandler));
+
+}*/
 
   private errorHandler (error: Error | any) : Observable<any> {
     return throwError(error);

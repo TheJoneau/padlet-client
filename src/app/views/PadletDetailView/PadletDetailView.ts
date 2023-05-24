@@ -11,6 +11,7 @@ import {Entry} from "../../types/Entry";
   templateUrl : './PadletDetailView.html',
   styles : []
 })
+
 export class PadletDetailView implements OnInit {
   padlet : Padlet | undefined;
   entry : Entry | undefined;
