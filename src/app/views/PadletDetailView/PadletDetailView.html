@@ -7,27 +7,34 @@
   </div>
 
   <div>
-    <button class="ui small button" *ngIf="authService.isLoggedIn()" (click)="removePadlet()"><i class="delete icon"></i>Delete Padlet</button>
+    <button class="ui small button" (click)="removePadlet()"><i class="delete icon"></i>Delete Padlet</button>
   </div>
 
 <!--  <span><button class="ui small button"><i class="delete icon"></i>Delete Padlet</button></span>-->
 <!--  <span><button class="ui small button" [routerLink]="['/padlet/create', padlet?.id]"><i class="edit icon"></i>Edit</button></span>-->
+
   <hr>
   <h2>Entries</h2>
-<!--  <span><button class="ui small button" [routerLink]="['/padlets/:id/entry/create']"><i class="plus icon"></i>Add Entry</button></span><br><br>-->
   <span><button class="ui small button" [routerLink]="['/padlets' ,padlet?.id, 'entry', 'create']"><i class="plus icon"></i>Add Entry</button></span><br><br>
+
   <div class="ui card" *ngFor="let entry of padlet?.entries">
     <div class="content">
       <span class="header">{{ entry?.title }}<br></span>
       <span class="meta">{{ entry?.creator?.firstname }} {{ entry?.created_at | date: 'dd.MM.yyyy'}}<br></span><br>
-      <span class="description">{{ entry?.text }} </span>
-    </div>
+      <span class="description">{{ entry?.text }} </span><br>
+
+
+      <span class="description">By {{ entry?.creator?.firstname }} {{ entry?.creator?.lastname }}</span><br>
+
+
+      </div>
+
     <div class="extra content">
       <span class="left floated">
           <div class="ui mini button"><i class="edit icon"></i>Edit</div>
       </span>
       <span class="right floated">
-          <div class="ui mini button"><i class="delete icon"></i>Delete</div>
+          <div class="ui mini button" (click)="removeEntry()"><i class="delete icon"></i>Delete</div>
       </span>
     </div>
   </div>

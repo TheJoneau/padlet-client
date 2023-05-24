@@ -11,14 +11,16 @@
       <p><b>Should Padlet be public?</b></p>
       <input type="checkbox" id="is_public" value="public" formControlName="is_public">
       <label for="is_public"> public</label>
-    </div>
+    </div><br>
+
+    <br><br><button class="ui secondary basic button" type="button" (click)="addUserWithRole()"><i class="plus icon"></i>Add User</button><br><br>
 
     <div formArrayName="usersWithRoles">
       <div *ngFor="let control of usersWithRoles?.controls; index as idx" [formGroupName]="idx">
         <select formControlName="userId">
           <option [value]="null" disabled selected>Select User</option>
           <option *ngFor="let user of this.users" [ngValue]="user.id">{{ user.firstname }} {{ user.lastname }}</option>
-        </select>
+        </select><br>
         <select formControlName="roleId">
           <option [value]="null" disabled selected>Select Role</option>
           <option *ngFor="let role of this.roles" [ngValue]="role.id">{{ role.title }}</option>
@@ -26,8 +28,7 @@
       </div>
     </div>
 
-    <br><br><button type="button" (click)="addUserWithRole()">Add User</button>
-    <br><br><button type="submit" class="ui button" [disabled]="padletForm.invalid">Speichern</button>
+    <br><br><br><button type="submit" class="ui button" [disabled]="padletForm.invalid">Speichern</button>
     <br><br><button class="ui button" [routerLink]="['/padlets/']">Back to all padlets</button>
   </form>
 </div>

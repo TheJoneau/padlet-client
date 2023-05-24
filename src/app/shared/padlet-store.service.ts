@@ -37,8 +37,8 @@ export class PadletStoreService {
 
   }
 
-  /*update (book: Book): Observable<any> {
-    return this.http.put(`${this.api}/books/${book.isbn}`, book)
+  /*update (padlet: Padlet): Observable<any> {
+    return this.http.put(`${this.api}/padlets/${id}`, padlet)
       .pipe(retry(3)).pipe(catchError(this.errorHandler));
 
   }*/

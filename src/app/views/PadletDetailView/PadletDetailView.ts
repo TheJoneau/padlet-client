@@ -3,6 +3,8 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Padlet} from "../../types/Padlet";
 import {PadletStoreService} from "../../shared/padlet-store.service";
 import {AuthenticationStoreService} from "../../shared/authentication-store-service";
+import {EntryStoreService} from "../../shared/entry-store-service";
+import {Entry} from "../../types/Entry";
 
 @Component({
   selector : 'pl-padlet-detail-view',
@@ -11,10 +13,12 @@ import {AuthenticationStoreService} from "../../shared/authentication-store-serv
 })
 export class PadletDetailView implements OnInit {
   padlet : Padlet | undefined;
+  entry : Entry | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private pl:PadletStoreService,
+    private es:EntryStoreService,
     public authService: AuthenticationStoreService,
     private router: Router,
   ){
@@ -34,6 +38,13 @@ export class PadletDetailView implements OnInit {
   removePadlet() {
     if (confirm('Do you really want to delete this padlet?') && this.padlet) {
       this.pl.remove(this.padlet?.id).subscribe((res:any) => this.router.navigate(['../'],
+        { relativeTo: this.route }));
+    }
+  }
+
+  removeEntry() {
+    if (confirm('Do you really want to delete this entry?') && this.entry) {
+      this.es.remove(this.entry?.id).subscribe((res:any) => this.router.navigate(['../'],
         { relativeTo: this.route }));
     }
   }
